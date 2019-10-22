@@ -1,0 +1,15 @@
+[Unit]
+Description=Save/Restore wifi PSKs
+Before=iwd.service
+BindsTo=iwd.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+StateDirectory=iwd
+StateDirectoryMode=0700
+ExecStart=/bin/find /boot/ -maxdepth 1 -name '*.psk' -type f -exec /bin/cp -p -f {} /var/lib/iwd/ +
+ExecStop=/bin/find /var/lib/iwd/ -maxdepth 1 -name '*.psk' -type f -exec /bin/cp -f {} /boot/ +
+
+[Install]
+WantedBy=iwd.service

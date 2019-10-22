@@ -1,0 +1,11 @@
+[Unit]
+Description=Periodically write to watchdog device
+
+[Service]
+ExecStart=/sbin/watchdog -t 1 -T 5 -F /dev/watchdog
+
+CPUSchedulingPolicy=rr
+IOSchedulingClass=realtime
+
+[Install]
+WantedBy=multi-user.target
