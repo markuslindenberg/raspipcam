@@ -1,0 +1,8 @@
+[Mount]
+What=tmpfs
+Where=/srv/chunks
+Type=tmpfs
+Options=size=100M,mode=0775,uid=www-data,gid=www-data
+
+[Install]
+WantedBy=local-fs.target

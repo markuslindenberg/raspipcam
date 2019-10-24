@@ -1,0 +1,1 @@
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb-serial", TAG+="systemd", ENV{SYSTEMD_WANTS}="serial-getty@%k.service"

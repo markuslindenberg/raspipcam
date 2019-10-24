@@ -1,0 +1,25 @@
+[Unit]
+Description=ffmpeg encoder
+Wants=srv-chunks.mount
+After=srv-chunks.mount
+
+[Service]
+User=ffmpeg
+DynamicUser=yes
+SupplementaryGroups=video www-data
+ReadWritePaths=/srv/chunks
+ExecStart=/usr/bin/ffmpeg -y -hide_banner -nostdin -nostats \
+	-f video4linux2 -input_format h264 -video_size hd720 -i /dev/video0 \
+	-c:v copy -f dash -streaming 1 -seg_duration 2s \
+	-window_size 5 -extra_window_size 10 -remove_at_exit 1 \
+	-use_template 1 -use_timeline 1 -ignore_io_errors 1 \
+		/srv/chunks/camera.mpd
+
+SuccessExitStatus=255
+Restart=always
+RestartSec=2
+;IOSchedulingClass=realtime
+CPUSchedulingPolicy=rr
+
+[Install]
+WantedBy=multi-user.target
