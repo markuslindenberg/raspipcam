@@ -1,0 +1,22 @@
+[Unit]
+Description=Nginx HTTP server
+After=network.target
+
+[Service]
+User=nginx
+DynamicUser=yes
+SupplementaryGroups=www-data
+RuntimeDirectory=nginx
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+ExecStartPre=/usr/sbin/nginx -g 'error_log stderr; pid /run/nginx/nginx.pid;' -t -q
+ExecStart=/usr/sbin/nginx -g 'error_log stderr; pid /run/nginx/nginx.pid; daemon off;'
+ExecReload=/usr/sbin/nginx -g 'error_log stderr; pid /run/nginx/nginx.pid;' -t -q
+ExecReload=/usr/sbin/nginx -g 'error_log stderr; pid /run/nginx/nginx.pid;' -s reload
+ExecStop=/usr/sbin/nginx -g 'error_log stderr; pid /run/nginx/nginx.pid;' -s quit
+
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
