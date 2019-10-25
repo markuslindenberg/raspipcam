@@ -1,9 +1,0 @@
-[Unit]
-Description=Install SSH authorized keys
-ConditionPathExists=!/etc/ssh/root_authorized_keys
-After=rngd.service
-
-[Service]
-Type=oneshot
-ExecStart=-/bin/cp -pf /boot/authorized_keys /etc/ssh/root_authorized_keys
-ExecStartPost=/usr/bin/touch /etc/ssh/root_authorized_keys

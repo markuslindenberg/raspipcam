@@ -2,6 +2,8 @@
 Description=ffmpeg encoder
 Wants=srv-chunks.mount
 After=srv-chunks.mount
+BindsTo=dev-video0.device
+After=dev-video0.device
 
 [Service]
 User=ffmpeg

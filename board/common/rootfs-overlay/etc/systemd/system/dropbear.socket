@@ -1,5 +1,5 @@
 [Unit]
-Description=OpenBSD Secure Shell server socket
+Description=Dropbear SSH daemon socket
 
 [Socket]
 ListenStream=22

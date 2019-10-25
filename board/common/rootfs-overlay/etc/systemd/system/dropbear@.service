@@ -1,0 +1,11 @@
+[Unit]
+Description=Dropbear SSH daemon
+Wants=dropbear-host-key@rsa.service dropbear-host-key@ecdsa.service dropbear-authorized-keys.service
+After=dropbear-host-key@rsa.service dropbear-host-key@ecdsa.service dropbear-authorized-keys.service
+
+[Service]
+ExecStart=/usr/sbin/dropbear -i -s
+SuccessExitStatus=255
+StandardInput=socket
+StandardOutput=socket
+StandardError=journal
