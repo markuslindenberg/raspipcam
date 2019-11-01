@@ -1,0 +1,13 @@
+diff --git a/libavcodec/omx.c b/libavcodec/omx.c
+index a555c3c07d..18d84af8ee 100644
+--- a/libavcodec/omx.c
++++ b/libavcodec/omx.c
+@@ -141,7 +141,7 @@ static av_cold OMXContext *omx_init(void *logctx, const char *libname, const cha
+ {
+     static const char * const libnames[] = {
+ #if CONFIG_OMX_RPI
+-        "/opt/vc/lib/libopenmaxil.so", "/opt/vc/lib/libbcm_host.so",
++        "/usr/lib/libopenmaxil.so", "/usr/lib/libbcm_host.so",
+ #else
+         "libOMX_Core.so", NULL,
+         "libOmxCore.so", NULL,
