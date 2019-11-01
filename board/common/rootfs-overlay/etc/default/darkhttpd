@@ -1,2 +1,0 @@
-DARKHTTPD_ROOT=/srv/chunks
-DARKHTTPD_FLAGS=--ipv6
