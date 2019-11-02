@@ -11,10 +11,12 @@ DynamicUser=yes
 SupplementaryGroups=video www-data
 AmbientCapabilities=CAP_NET_BIND_SERVICE
 ReadWritePaths=/srv/chunks
+WorkingDirectory=/srv/chunks
+ExecStartPre=!/usr/bin/find /srv/chunks -mindepth 1 -name *.ts -exec /usr/bin/rm -f {} +
 ExecStartPre=/usr/bin/v4l2-ctl -c video_bitrate_mode=1,video_bitrate=6000000,h264_i_frame_period=60,repeat_sequence_header=1
-ExecStart=/usr/bin/vlc-wrapper -vvv -I dummy --ignore-config --no-plugins-cache --no-dbus --no-audio --no-video \
-	v4l2://:chroma=h264:width=1920:height=1080:fps=30 \
-	:sout=#rtp{sdp=rtsp://:554/live.sdp} --rtsp-timeout 10
+ExecStart=/usr/bin/vlc-wrapper -vvv -I dummy --ignore-config --no-plugins-cache --no-dbus --no-audio --no-video --rtsp-timeout 10 \
+	v4l2://:chroma=h264:width=1640:height=922:fps=30 \
+	:sout=#duplicate{dst=rtp{sdp=rtsp://:554/live.sdp},dst=std{access=livehttp{seglen=2,numsegs=5,index=live.m3u8},mux=ts{use-key-frames},dst=live-########.ts}}
 
 Restart=always
 RestartSec=2
