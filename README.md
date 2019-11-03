@@ -1,12 +1,12 @@
-# Raspberry Pi Zero W Webcam Firmware
+# Raspberry Pi IP Camera
 
 ## Building
 
 ```
-git clone -b 2019.08.01 git://git.buildroot.net/buildroot 
+git clone git://git.buildroot.net/buildroot
 
 cd buildroot
-make BR2_EXTERNAL=../campi campi_raspberrypi0w_defconfig
+make BR2_EXTERNAL=../raspipcam raspipcam_raspberrypi0w_defconfig
 make
 ```
 
@@ -22,7 +22,7 @@ Use `output/images/Image` to replace the `Image` file on the SD card (mounted as
 
 ### Console
 
-Password for root is `campi`.
+Password for root is `raspipcam`.
 
 ### SSH
 
