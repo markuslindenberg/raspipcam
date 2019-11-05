@@ -1,0 +1,10 @@
+[Match]
+Type=ether
+
+[Network]
+DHCP=yes
+EmitLLDP=yes
+
+[DHCP]
+UseTimezone=yes
+RouteMetric=100

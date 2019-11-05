@@ -1,0 +1,9 @@
+[Match]
+Type=wlan
+
+[Network]
+DHCP=yes
+
+[DHCP]
+UseTimezone=yes
+RouteMetric=200

@@ -1,0 +1,8 @@
+[Match]
+Type=gadget
+
+[Link]
+RequiredForOnline=no
+
+[Network]
+IPv6AcceptRA=no
