@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone='no'?><!--*-nxml-*-->
+<!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+
+<!-- See avahi.service(5) for more information about this configuration file -->
+
+<service-group>
+
+  <name replace-wildcards="yes">Raspberry Pi IP Camera %h RTSP Stream</name>
+
+  <service>
+    <type>_rtsp._tcp</type>
+    <port>554</port>
+    <txt-record>path=/live.sdp</txt-record>
+  </service>
+
+</service-group>

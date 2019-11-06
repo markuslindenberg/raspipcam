@@ -13,3 +13,6 @@ rm -f ${TARGET_DIR}/etc/nginx/fastcgi*
 rm -f ${TARGET_DIR}/etc/nginx/scgi*
 rm -f ${TARGET_DIR}/etc/nginx/uwsgi*
 
+rm -f ${TARGET_DIR}/etc/avahi/services/ssh.service
+rm -f ${TARGET_DIR}/etc/avahi/services/sftp-ssh.service
+rm -f ${TARGET_DIR}/etc/avahi/avahi-dnsconfd.action

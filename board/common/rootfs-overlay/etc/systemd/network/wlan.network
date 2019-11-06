@@ -5,5 +5,6 @@ Type=wlan
 DHCP=yes
 
 [DHCP]
+ClientIdentifier=mac
 UseTimezone=yes
 RouteMetric=200

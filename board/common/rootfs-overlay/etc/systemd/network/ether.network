@@ -6,5 +6,6 @@ DHCP=yes
 EmitLLDP=yes
 
 [DHCP]
+ClientIdentifier=mac
 UseTimezone=yes
 RouteMetric=100
