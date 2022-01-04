@@ -1,0 +1,64 @@
+name: image
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  BUILDROOT_VERSION: '2021.11'
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        config:
+          - 'raspipcam_raspberrypizero2w'
+      fail-fast: false
+
+    env:
+      BUILD_NAME: '${{ matrix.config }}-${{ github.sha }}'
+      CONFIG_NAME: '${{ matrix.config }}_defconfig'
+    steps:
+      - name: free space on runner
+        run: |
+          sudo rm -rf /usr/share/swift /usr/share/dotnet
+
+      - name: install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install bc
+
+      - name: checkout Buildroot
+        uses: actions/checkout@v2
+        with:
+          repository: 'buildroot/buildroot'
+          ref: '${{ env.BUILDROOT_VERSION }}'
+          path: 'buildroot'
+
+      - name: checkout external
+        uses: actions/checkout@v2
+        with:
+          path: 'external'
+
+      - name: configure image
+        run: |
+          make -s BR2_EXTERNAL=$GITHUB_WORKSPACE/external $CONFIG_NAME
+        working-directory: 'buildroot'
+
+      - name: download source
+        run: |
+          make -s source
+        working-directory: 'buildroot'
+
+      - name: build image
+        run: |
+          make -s all
+        working-directory: 'buildroot'
+
+      - name: upload sdcard image
+        uses: actions/upload-artifact@v2
+        with:
+          name: 'sdcard'
+          path: buildroot/output/images/sdcard.img
