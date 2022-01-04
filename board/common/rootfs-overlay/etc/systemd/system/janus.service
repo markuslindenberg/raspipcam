@@ -1,0 +1,18 @@
+[Unit]
+Description=janus webrtc server
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=janus
+DynamicUser=yes
+
+ExecStart=/usr/bin/janus
+
+Restart=always
+RestartSec=5
+CPUSchedulingPolicy=rr
+
+[Install]
+WantedBy=multi-user.target
+

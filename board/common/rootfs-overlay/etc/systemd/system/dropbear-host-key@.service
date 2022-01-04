@@ -1,8 +1,0 @@
-[Unit]
-Description=Dropbear %I host key
-ConditionPathExists=!/etc/dropbear/dropbear_%I_host_key
-After=rngd.service
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/sh -c "/usr/bin/cp -pf /boot/dropbear_%I_host_key /etc/dropbear/ || { dropbearkey -t %I -f /etc/dropbear/dropbear_%I_host_key && cp -f /etc/dropbear/dropbear_%I_host_key /boot/ ; }"

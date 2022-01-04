@@ -1,9 +1,0 @@
-[Unit]
-Description=Dropbear SSH daemon socket
-
-[Socket]
-ListenStream=22
-Accept=yes
-
-[Install]
-WantedBy=sockets.target

@@ -3,16 +3,16 @@
 set -u
 set -e
 
-if [ ! -d ${TARGET_DIR}/etc/dropbear ]; then
-	rm -f ${TARGET_DIR}/etc/dropbear
-	mkdir -p ${TARGET_DIR}/etc/dropbear
+mkdir -p ${TARGET_DIR}/boot
+
+cat << EOF > ${TARGET_DIR}/etc/os-release
+NAME=raspipcam
+ID=raspipcam
+ID_LIKE=buildroot
+PRETTY_NAME="raspipcam (Buildroot ${BR2_VERSION})"
+EOF
+
+if [ -n "${GITHUB_SHA:-}" ]; then
+    echo "VERSION_ID=${GITHUB_SHA}" >> ${TARGET_DIR}/etc/os-release 
 fi
 
-rm -f ${TARGET_DIR}/etc/nginx/*.default
-rm -f ${TARGET_DIR}/etc/nginx/fastcgi*
-rm -f ${TARGET_DIR}/etc/nginx/scgi*
-rm -f ${TARGET_DIR}/etc/nginx/uwsgi*
-
-rm -f ${TARGET_DIR}/etc/avahi/services/ssh.service
-rm -f ${TARGET_DIR}/etc/avahi/services/sftp-ssh.service
-rm -f ${TARGET_DIR}/etc/avahi/avahi-dnsconfd.action

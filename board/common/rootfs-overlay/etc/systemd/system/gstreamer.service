@@ -1,0 +1,25 @@
+[Unit]
+Description=gstreamer pipeline
+After=dev-video0.device
+Wants=networkt.target
+After=network.target
+
+[Service]
+User=gstreamer
+DynamicUser=yes
+SupplementaryGroups=video
+
+Environment="GSTREAMER_PIPELINE=v4l2src \
+	extra-controls=\"controls,video_bitrate_mode=1,video_bitrate=4000000,h264_i_frame_period=60,repeat_sequence_header=1\" \
+	! video/x-h264,format=I420,width=1640,height=922,framerate=30/1 \
+	! rtph264pay ! udpsink host=127.0.0.1 port=5004"
+EnvironmentFile=-/boot/gstreamer.txt
+ExecStart=/usr/bin/gst-launch-1.0 -f $GSTREAMER_PIPELINE
+
+Restart=always
+RestartSec=5
+CPUSchedulingPolicy=rr
+
+[Install]
+WantedBy=multi-user.target
+

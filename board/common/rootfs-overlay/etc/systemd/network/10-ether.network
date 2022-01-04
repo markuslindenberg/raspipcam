@@ -1,0 +1,13 @@
+[Match]
+Type=ether
+
+[Network]
+EmitLLDP=yes
+MulticastDNS=yes
+DHCP=yes
+
+[DHCPv4]
+RouteMetric=100
+
+[DHCPv6]
+RouteMetric=100

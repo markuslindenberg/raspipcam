@@ -1,0 +1,22 @@
+# videobufferkf = true|false (whether the plugin should store the latest
+#		keyframe and send it immediately for new viewers, EXPERIMENTAL)
+# videoskew = true|false (whether the plugin should perform skew
+#		analisys and compensation on incoming video RTP stream, EXPERIMENTAL)
+
+general: {
+	events = false
+}
+
+camera: {
+	type = "rtp"
+	id = 1
+	description = "H.264 live stream coming from gstreamer"
+	audio = false
+	video = true
+	videoport = 5004
+	videoiface = "127.0.0.1"
+	videopt = 126
+	videortpmap = "H264/90000"
+	videofmtp = "profile-level-id=42e01f;packetization-mode=1"
+}
+

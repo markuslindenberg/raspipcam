@@ -1,0 +1,12 @@
+[Match]
+Type=wlan
+
+[Network]
+MulticastDNS=yes
+DHCP=yes
+
+[DHCPv4]
+RouteMetric=200
+
+[DHCPv6]
+RouteMetric=200

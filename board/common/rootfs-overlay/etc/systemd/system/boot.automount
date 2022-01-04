@@ -1,7 +1,0 @@
-[Automount]
-Where=/boot
-DirectoryMode=0700
-TimeoutIdleSec=5
-
-[Install]
-WantedBy=local-fs.target

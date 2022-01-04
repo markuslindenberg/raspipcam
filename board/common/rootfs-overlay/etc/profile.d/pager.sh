@@ -1,1 +1,1 @@
-export PAGER=/usr/bin/more
+export PAGER=
